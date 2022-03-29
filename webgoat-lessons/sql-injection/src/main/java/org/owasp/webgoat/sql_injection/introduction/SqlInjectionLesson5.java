@@ -23,6 +23,7 @@
 
 package org.owasp.webgoat.sql_injection.introduction;
 
+import org.owasp.webgoat.LessonDataSource;
 import org.owasp.webgoat.assignments.AssignmentEndpoint;
 import org.owasp.webgoat.assignments.AssignmentHints;
 import org.owasp.webgoat.assignments.AttackResult;
@@ -31,7 +32,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,18 +39,18 @@ import java.sql.Statement;
 
 
 @RestController
-@AssignmentHints(value = {"SqlStringInjectionHint5-a"})
+@AssignmentHints(value = {"SqlStringInjectionHint5-1", "SqlStringInjectionHint5-2", "SqlStringInjectionHint5-3", "SqlStringInjectionHint5-4"})
 public class SqlInjectionLesson5 extends AssignmentEndpoint {
 
-    private final DataSource dataSource;
+    private final LessonDataSource dataSource;
 
-    public SqlInjectionLesson5(DataSource dataSource) {
+    public SqlInjectionLesson5(LessonDataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     @PostConstruct
     public void createUser() {
-        // HSQLDB does not support CREATE USER with IF NOT EXISTS so we need to do it in code (DROP first will throw error if user does not exists)
+        // HSQLDB does not support CREATE USER with IF NOT EXISTS so we need to do it in code (using DROP first will throw error if user does not exists)
         try (Connection connection = dataSource.getConnection()) {
             try (var statement = connection.prepareStatement("CREATE USER unauthorized_user PASSWORD test")) {
                 statement.execute();

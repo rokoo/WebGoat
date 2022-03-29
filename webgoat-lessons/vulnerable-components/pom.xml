@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.owasp.webgoat.lesson</groupId>
         <artifactId>webgoat-lessons-parent</artifactId>
-        <version>8.2.0-SNAPSHOT</version>
+        <version>8.2.3-SNAPSHOT</version>
     </parent>
     <dependencies>
         <dependency>
@@ -35,4 +35,20 @@
             <version>1.2</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <!-- Otherwise test will fail with JDK16 -->
+                    <argLine>
+                        --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED
+                    </argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

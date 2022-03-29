@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.owasp.webgoat</groupId>
         <artifactId>webgoat-parent</artifactId>
-        <version>8.2.0-SNAPSHOT</version>
+        <version>8.2.3-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -151,7 +151,22 @@
         </dependency>
         <dependency>
             <groupId>org.owasp.webgoat.lesson</groupId>
+            <artifactId>spoof-cookie</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.owasp.webgoat.lesson</groupId>
+            <artifactId>hijack-session</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.owasp.webgoat.lesson</groupId>
             <artifactId>webgoat-lesson-template</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.owasp.webgoat.lesson</groupId>
+            <artifactId>logging</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
